@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Server Hub</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 2.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #f8fafc;
+      letter-spacing: -0.025em;
+    }
+    p.subtitle {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-top: 0.35rem;
+    }
+    .section-container {
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 2rem;
+    }
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #38bdf8;
+      margin-bottom: 0.85rem;
+      padding-left: 0.25rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #131c2e;
+      border: 1px solid #1e293b;
+      padding: 1.25rem;
+      border-radius: 10px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100px;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      background: #1a263d;
+      border-color: #38bdf8;
+    }
+    .title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #f8fafc;
+    }
+    .desc {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-top: 0.25rem;
+    }
+    .port {
+      font-size: 0.75rem;
+      color: #475569;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      margin-top: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Personal Server Hub</h1>
+    <p class="subtitle">Mesh Access via Tailscale (100.92.70.85)</p>
+  </header>
+
+  <!-- Media Streaming -->
+  <div class="section-container">
+    <div class="section-title">Media & Streaming</div>
+    <div class="grid">
+      <a class="card" href="http://100.92.70.85:8096" target="_blank">
+        <div>
+          <div class="title">Jellyfin</div>
+          <div class="desc">Movies & Series</div>
+        </div>
+        <div class="port">:8096</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:4533" target="_blank">
+        <div>
+          <div class="title">Navidrome</div>
+          <div class="desc">Music Streaming</div>
+        </div>
+        <div class="port">:4533</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:5055" target="_blank">
+        <div>
+          <div class="title">Jellyseerr</div>
+          <div class="desc">Media Requests</div>
+        </div>
+        <div class="port">:5055</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:8081" target="_blank">
+        <div>
+          <div class="title">MeTube</div>
+          <div class="desc">YouTube Downloader</div>
+        </div>
+        <div class="port">:8081</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Automation & Downloaders -->
+  <div class="section-container">
+    <div class="section-title">Automation & Downloaders</div>
+    <div class="grid">
+      <a class="card" href="http://100.92.70.85:8080" target="_blank">
+        <div>
+          <div class="title">qBittorrent</div>
+          <div class="desc">Torrent Client</div>
+        </div>
+        <div class="port">:8080</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:7878" target="_blank">
+        <div>
+          <div class="title">Radarr</div>
+          <div class="desc">Movie Automation</div>
+        </div>
+        <div class="port">:7878</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:8989" target="_blank">
+        <div>
+          <div class="title">Sonarr</div>
+          <div class="desc">TV Show Automation</div>
+        </div>
+        <div class="port">:8989</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:9696" target="_blank">
+        <div>
+          <div class="title">Prowlarr</div>
+          <div class="desc">Indexer Manager</div>
+        </div>
+        <div class="port">:9696</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:8191" target="_blank">
+        <div>
+          <div class="title">FlareSolverr</div>
+          <div class="desc">Captcha Bypass Proxy</div>
+        </div>
+        <div class="port">:8191</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Storage & Cloud -->
+  <div class="section-container">
+    <div class="section-title">Cloud & Storage</div>
+    <div class="grid">
+      <a class="card" href="http://100.92.70.85:2283" target="_blank">
+        <div>
+          <div class="title">Immich</div>
+          <div class="desc">Photos & Backup</div>
+        </div>
+        <div class="port">:2283</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:8083" target="_blank">
+        <div>
+          <div class="title">Nextcloud</div>
+          <div class="desc">File Sync & Storage</div>
+        </div>
+        <div class="port">:8083</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Home & Management -->
+  <div class="section-container">
+    <div class="section-title">Management & Smart Home</div>
+    <div class="grid">
+      <a class="card" href="http://100.92.70.85:8082" target="_blank">
+        <div>
+          <div class="title">AdGuard Home</div>
+          <div class="desc">DNS & Ad Filtering</div>
+        </div>
+        <div class="port">:8082</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:8123" target="_blank">
+        <div>
+          <div class="title">Home Assistant</div>
+          <div class="desc">Home Automation</div>
+        </div>
+        <div class="port">:8123</div>
+      </a>
+      <a class="card" href="http://100.92.70.85:3001" target="_blank">
+        <div>
+          <div class="title">Uptime Kuma</div>
+          <div class="desc">Status Monitoring</div>
+        </div>
+        <div class="port">:3001</div>
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

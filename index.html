@@ -18,7 +18,7 @@
     }
     header {
       text-align: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
     h1 {
       font-size: 1.85rem;
@@ -30,6 +30,35 @@
       color: #64748b;
       font-size: 0.9rem;
       margin-top: 0.35rem;
+      transition: color 0.2s ease;
+    }
+    .toggle-container {
+      display: inline-flex;
+      background: #131c2e;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid #1e293b;
+      margin-bottom: 2rem;
+      gap: 4px;
+    }
+    .toggle-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .toggle-btn:hover {
+      color: #f8fafc;
+    }
+    .toggle-btn.active {
+      background: #0284c7;
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     }
     .section-container {
       width: 100%;
@@ -90,40 +119,53 @@
 
   <header>
     <h1>Personal Server Hub</h1>
-    <p class="subtitle">Mesh Access via Tailscale (100.92.70.85)</p>
+    <p class="subtitle" id="hub-subtitle">Mesh Access via HTTPS (kali.tailf56f46.ts.net)</p>
   </header>
+
+  <!-- Mode Switcher -->
+  <div class="toggle-container">
+    <button class="toggle-btn active" id="btn-https" onclick="setMode('https')">HTTPS Links</button>
+    <button class="toggle-btn" id="btn-http" onclick="setMode('http')">HTTP Links</button>
+  </div>
 
   <!-- Media Streaming -->
   <div class="section-container">
     <div class="section-title">Media & Streaming</div>
     <div class="grid">
-      <a class="card" href="http://100.92.70.85:8096" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:8096" data-https="https://kali.tailf56f46.ts.net:8444" data-port-http=":8096" data-port-https=":8444" href="https://kali.tailf56f46.ts.net:8444" target="_blank">
         <div>
           <div class="title">Jellyfin</div>
           <div class="desc">Movies & Series</div>
         </div>
-        <div class="port">:8096</div>
+        <div class="port">:8444</div>
       </a>
-      <a class="card" href="http://100.92.70.85:4533" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:4533" data-https="https://kali.tailf56f46.ts.net:8447" data-port-http=":4533" data-port-https=":8447" href="https://kali.tailf56f46.ts.net:8447" target="_blank">
         <div>
           <div class="title">Navidrome</div>
           <div class="desc">Music Streaming</div>
         </div>
-        <div class="port">:4533</div>
+        <div class="port">:8447</div>
       </a>
-      <a class="card" href="http://100.92.70.85:5055" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:5055" data-https="https://kali.tailf56f46.ts.net:8450" data-port-http=":5055" data-port-https=":8450" href="https://kali.tailf56f46.ts.net:8450" target="_blank">
         <div>
           <div class="title">Jellyseerr</div>
           <div class="desc">Media Requests</div>
         </div>
-        <div class="port">:5055</div>
+        <div class="port">:8450</div>
       </a>
-      <a class="card" href="http://100.92.70.85:8081" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:8081" data-https="https://kali.tailf56f46.ts.net:8453" data-port-http=":8081" data-port-https=":8453" href="https://kali.tailf56f46.ts.net:8453" target="_blank">
         <div>
           <div class="title">MeTube</div>
           <div class="desc">YouTube Downloader</div>
         </div>
-        <div class="port">:8081</div>
+        <div class="port">:8453</div>
+      </a>
+      <a class="card" data-http="http://100.92.70.85:8002" data-https="https://kali.tailf56f46.ts.net:8454" data-port-http=":8002" data-port-https=":8454" href="https://kali.tailf56f46.ts.net:8454" target="_blank">
+        <div>
+          <div class="title">Music Tag Web</div>
+          <div class="desc">Audio Metadata Editor</div>
+        </div>
+        <div class="port">:8454</div>
       </a>
     </div>
   </div>
@@ -132,35 +174,35 @@
   <div class="section-container">
     <div class="section-title">Automation & Downloaders</div>
     <div class="grid">
-      <a class="card" href="http://100.92.70.85:8085" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:8085" data-https="https://kali.tailf56f46.ts.net:8455" data-port-http=":8085" data-port-https=":8455" href="https://kali.tailf56f46.ts.net:8455" target="_blank">
         <div>
           <div class="title">qBittorrent</div>
           <div class="desc">Torrent Client</div>
         </div>
-        <div class="port">:8085</div>
+        <div class="port">:8455</div>
       </a>
-      <a class="card" href="http://100.92.70.85:7878" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:7878" data-https="https://kali.tailf56f46.ts.net:8446" data-port-http=":7878" data-port-https=":8446" href="https://kali.tailf56f46.ts.net:8446" target="_blank">
         <div>
           <div class="title">Radarr</div>
           <div class="desc">Movie Automation</div>
         </div>
-        <div class="port">:7878</div>
+        <div class="port">:8446</div>
       </a>
-      <a class="card" href="http://100.92.70.85:8989" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:8989" data-https="https://kali.tailf56f46.ts.net:8449" data-port-http=":8989" data-port-https=":8449" href="https://kali.tailf56f46.ts.net:8449" target="_blank">
         <div>
           <div class="title">Sonarr</div>
           <div class="desc">TV Show Automation</div>
         </div>
-        <div class="port">:8989</div>
+        <div class="port">:8449</div>
       </a>
-      <a class="card" href="http://100.92.70.85:9696" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:9696" data-https="https://kali.tailf56f46.ts.net:8451" data-port-http=":9696" data-port-https=":8451" href="https://kali.tailf56f46.ts.net:8451" target="_blank">
         <div>
           <div class="title">Prowlarr</div>
           <div class="desc">Indexer Manager</div>
         </div>
-        <div class="port">:9696</div>
+        <div class="port">:8451</div>
       </a>
-      <a class="card" href="http://100.92.70.85:8191" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:8191" data-https="http://100.92.70.85:8191" data-port-http=":8191" data-port-https=":8191" href="http://100.92.70.85:8191" target="_blank">
         <div>
           <div class="title">FlareSolverr</div>
           <div class="desc">Captcha Bypass Proxy</div>
@@ -170,54 +212,86 @@
     </div>
   </div>
 
-  <!-- Storage & Cloud -->
+  <!-- Cloud, Storage & Finance -->
   <div class="section-container">
     <div class="section-title">Cloud & Storage</div>
     <div class="grid">
-      <a class="card" href="http://100.92.70.85:2283" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:2283" data-https="https://kali.tailf56f46.ts.net:8443" data-port-http=":2283" data-port-https=":8443" href="https://kali.tailf56f46.ts.net:8443" target="_blank">
         <div>
           <div class="title">Immich</div>
           <div class="desc">Photos & Backup</div>
         </div>
-        <div class="port">:2283</div>
+        <div class="port">:8443</div>
       </a>
-      <a class="card" href="http://100.92.70.85:8080" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:8080" data-https="https://kali.tailf56f46.ts.net:8445" data-port-http=":8080" data-port-https=":8445" href="https://kali.tailf56f46.ts.net:8445" target="_blank">
         <div>
           <div class="title">Nextcloud</div>
           <div class="desc">File Sync & Storage</div>
         </div>
-        <div class="port">:8080</div>
+        <div class="port">:8445</div>
+      </a>
+      <a class="card" data-http="http://100.92.70.85:5006" data-https="https://kali.tailf56f46.ts.net:8448" data-port-http=":5006" data-port-https=":8448" href="https://kali.tailf56f46.ts.net:8448" target="_blank">
+        <div>
+          <div class="title">Actual Budget</div>
+          <div class="desc">Personal Finance</div>
+        </div>
+        <div class="port">:8448</div>
       </a>
     </div>
   </div>
 
-  <!-- Home & Management -->
+  <!-- Management & Smart Home -->
   <div class="section-container">
     <div class="section-title">Management & Smart Home</div>
     <div class="grid">
-      <a class="card" href="http://100.92.70.85:8082" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:8082" data-https="https://kali.tailf56f46.ts.net:8456" data-port-http=":8082" data-port-https=":8456" href="https://kali.tailf56f46.ts.net:8456" target="_blank">
         <div>
           <div class="title">AdGuard Home</div>
           <div class="desc">DNS & Ad Filtering</div>
         </div>
-        <div class="port">:8082</div>
+        <div class="port">:8456</div>
       </a>
-      <a class="card" href="http://100.92.70.85:8123" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:8123" data-https="http://100.92.70.85:8123" data-port-http=":8123" data-port-https=":8123" href="http://100.92.70.85:8123" target="_blank">
         <div>
           <div class="title">Home Assistant</div>
           <div class="desc">Home Automation</div>
         </div>
         <div class="port">:8123</div>
       </a>
-      <a class="card" href="http://100.92.70.85:3001" target="_blank">
+      <a class="card" data-http="http://100.92.70.85:3001" data-https="https://kali.tailf56f46.ts.net:8452" data-port-http=":3001" data-port-https=":8452" href="https://kali.tailf56f46.ts.net:8452" target="_blank">
         <div>
           <div class="title">Uptime Kuma</div>
           <div class="desc">Status Monitoring</div>
         </div>
-        <div class="port">:3001</div>
+        <div class="port">:8452</div>
       </a>
     </div>
   </div>
+
+  <script>
+    function setMode(mode) {
+      const isHttps = mode === 'https';
+      
+      document.getElementById('btn-https').classList.toggle('active', isHttps);
+      document.getElementById('btn-http').classList.toggle('active', !isHttps);
+      
+      document.getElementById('hub-subtitle').textContent = isHttps 
+        ? 'Mesh Access via HTTPS (kali.tailf56f46.ts.net)'
+        : 'Mesh Access via Tailscale (100.92.70.85)';
+
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const url = isHttps ? card.getAttribute('data-https') : card.getAttribute('data-http');
+        const portText = isHttps ? card.getAttribute('data-port-https') : card.getAttribute('data-port-http');
+        
+        card.setAttribute('href', url);
+        const portEl = card.querySelector('.port');
+        if (portEl) {
+          portEl.textContent = portText;
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
